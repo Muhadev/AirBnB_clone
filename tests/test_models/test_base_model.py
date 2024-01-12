@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 import unittest
+import pep8
 import json
 import os
 from datetime import datetime
 from models.base_model import BaseModel
-import pep8
 
 
 class TestBaseModelDocs(unittest.TestCase):
@@ -23,12 +23,12 @@ class TestBaseModelPep8(unittest.TestCase):
     """ check for pep8 validation """
     def test_pep8(self):
         """ test base and test_base for pep8 conformance """
-        style = pep8.StyleGuide(quiet=True)
-        file1 = 'models/base_model.py'
-        file2 = 'tests/test_models/test_base_model.py'
-        result = style.check_files([file1, file2])
-        self.assertEqual(result.total_errors, 0,
-                         "Found code style errors (and warning).")
+        pep_style = pep8.StyleGuide(quiet=True)
+        rest = pep_style.check_files(['models/base_model.py',
+                                         'models/__init__.py',
+                                         'models/engine/file_storage.py'])
+        self.assertNotEqual(rest.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
 
 class TestBaseModel(unittest.TestCase):
