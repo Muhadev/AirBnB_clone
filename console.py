@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """HBNB console"""
-import cmd
-from  models import storage
-from shlex import split
 import re
+from models import storage
+from shlex import split
+import cmd
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -182,6 +182,7 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     obj.__dict__[k] = v
         storage.save()
+
 
 if __name__ == '__main__':
     """Instantiate HBNBCommand and start the command loop"""

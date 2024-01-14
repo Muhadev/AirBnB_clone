@@ -35,10 +35,6 @@ class BaseModel:
             self.updated_at = datetime.now()
 
     def __str__(self):
-        """String representantion for instances"""
-        return "[{}] ({}) <{}>".format(type(self).__name__, self.id, self.__dict__)
-
-    def __str__(self):
         """ String """
         return('[' + type(self).__name__ + '] (' + str(self.id) +
                ') ' + str(self.__dict__))
