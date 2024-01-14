@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-"""
-Module for Base class
-Parent class for the airBnb clone project.
-"""
+"""Defines the BaseModel class"""
 
 import models
 from uuid import uuid4
@@ -10,13 +7,13 @@ from datetime import datetime
 
 
 class BaseModel:
-    """Class for Base Model"""
+    """Represents the BaseModel of AirBnB project"""
 
     def __init__(self, *args, **kwargs):
-        """Initialization for the Base instance
+        """Initialize a new BaseModel.
         Args:
-            - *args: list of arguments
-            - **kwargs: dict of key/value arguments
+            *args (any): Unused.
+            **kwargs (dict): Key/value pairs of attributes.
         """
         tformat = "%Y-%m-%dT%H:%M:%S.%f"
         self.id = str(uuid4())
@@ -32,21 +29,23 @@ class BaseModel:
         else:
             models.storage.new(self)
 
-    def __str__(self):
-        """String representation for instances"""
-        return "[{}] ({}) <{}>".format(cls_name, self.id, self.__dict__)
-
     def save(self):
-        """updates the public instance attribute `updated_at` with
-        the current datetime"""
+        """Update updated_at with the current datetime."""
         self.updated_at = datetime.today()
         models.storage.save()
 
     def to_dict(self):
-        """returns a dictionary containing all keys/values of __dict__ of
-        the instance"""
-        my_dict = self.__dict__.copy()
-        my_dict['created_at'] = my_dict['created_at'].isoformat()
-        my_dict['updated_at'] = my_dict['updated_at'].isoformat()
-        my_dict['__class__'] = self__class__.__name__
-        return my_dict
+        """Return the dictionary of the BaseModel instance.
+        Includes the key/value pair __class__ representing
+        the class name of the object.
+        """
+        ourdict = self.__dict__.copy()
+        ourdict["created_at"] = self.created_at.isoformat()
+        ourdict["updated_at"] = self.updated_at.isoformat()
+        ourdict["__class__"] = self.__class__.__name__
+        return ourdict
+
+    def __str__(self):
+        """Return the print/str representation of the BaseModel instance."""
+        cls_name = self.__class__.__name__
+        return "[{}] ({}) {}".format(cls_name, self.id, self.__dict__)

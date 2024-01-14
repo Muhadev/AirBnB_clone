@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-"""HBNB console"""
-import re
-from models import storage
-from shlex import split
+"""Defines the HBnB console."""
 import cmd
+import re
+from shlex import split
+from models import storage
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -14,27 +14,31 @@ from models.review import Review
 
 
 def parse(arg):
-    """the parse"""
-    braces = re.search(r"\{(.*?)\}", arg)
-    bracke = re.search(r"\[(.*?)\]", arg)
-    if braces is None:
-        if bracke is None:
+    curly_braces = re.search(r"\{(.*?)\}", arg)
+    brackets = re.search(r"\[(.*?)\]", arg)
+    if curly_braces is None:
+        if brackets is None:
             return [i.strip(",") for i in split(arg)]
         else:
-            lex = split(arg[:bracke.span()[0]])
-            retl = [i.strip(",") for i in lex]
-            retl.append(bracke.group())
+            lexer = split(arg[:brackets.span()[0]])
+            retl = [i.strip(",") for i in lexer]
+            retl.append(brackets.group())
             return retl
     else:
-        lex = split(arg[:braces.span()[0]])
-        retl = [i.strip(",") for i in lex]
-        retl.append(braces.group())
+        lexer = split(arg[:curly_braces.span()[0]])
+        retl = [i.strip(",") for i in lexer]
+        retl.append(curly_braces.group())
         return retl
 
 
 class HBNBCommand(cmd.Cmd):
-    """Set a custom prompt for the command interpreter"""
-    prompt = '(hbnb) '
+    """Defines the HolbertonBnB command interpreter.
+
+    Attributes:
+        prompt (str): The command prompt.
+    """
+
+    prompt = "(hbnb) "
     __classes = {
         "BaseModel",
         "User",
@@ -46,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
     }
 
     def emptyline(self):
-        """Do nothing on an empty line"""
+        """Do nothing upon receiving an empty line."""
         pass
 
     def default(self, arg):
@@ -202,6 +206,5 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
 
 
-if __name__ == '__main__':
-    """Instantiate HBNBCommand and start the command loop"""
+if __name__ == "__main__":
     HBNBCommand().cmdloop()
