@@ -77,7 +77,7 @@ class TestCity(unittest.TestCase):
 
     def test_str(self):
         """ test ___str___ method """
-        correct = "[City] ({}) {}".format(self.city.id, self.city.__dict__)
+        correct = "[City] ({}) <{}>".format(self.city.id, self.city.__dict__)
         self.assertEqual(correct, str(self.city))
 
     @classmethod

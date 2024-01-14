@@ -87,7 +87,7 @@ class TestUser(unittest.TestCase):
 
     def test_str(self):
         """ test ___str___ method """
-        correct = "[User] ({}) {}".format(self.user.id, self.user.__dict__)
+        correct = "[User] ({}) <{}>".format(self.user.id, self.user.__dict__)
         self.assertEqual(correct, str(self.user))
 
     @classmethod
