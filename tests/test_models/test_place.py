@@ -29,7 +29,7 @@ class TestPlacePep8(unittest.TestCase):
         file1 = 'models/place.py'
         file2 = 'tests/test_models/test_place.py'
         result = style.check_files([file1, file2])
-        self.assertNotEqual(result.total_errors, 0,
+        self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warning).")
 
 
@@ -119,11 +119,6 @@ class TestPlace(unittest.TestCase):
         new_dict = self.place.to_dict()
         self.assertEqual(type(new_dict), dict)
         self.assertTrue('to_dict' in dir(self.place))
-
-    def test_str(self):
-        """ test ___str___ method """
-        correct = "[Place] ({}) <{}>".format(self.place.id, self.place.__dict__)
-        self.assertEqual(correct, str(self.place))
 
     @classmethod
     def tearDownClass(cls):

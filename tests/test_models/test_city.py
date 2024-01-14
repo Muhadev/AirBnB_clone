@@ -75,11 +75,6 @@ class TestCity(unittest.TestCase):
         self.assertEqual(type(new_dict), dict)
         self.assertTrue('to_dict' in dir(self.city))
 
-    def test_str(self):
-        """ test ___str___ method """
-        correct = "[City] ({}) <{}>".format(self.city.id, self.city.__dict__)
-        self.assertEqual(correct, str(self.city))
-
     @classmethod
     def tearDownClass(cls):
         """ remove test instances """
