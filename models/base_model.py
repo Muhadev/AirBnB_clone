@@ -35,8 +35,12 @@ class BaseModel:
             self.updated_at = datetime.now()
 
     def __str__(self):
-        """String representantion for instances"""
-        return f"[{type(self).__name__}] ({self.id}) <{self.__dict__}>"
+        """String representation for instances"""
+        return "[{}] ({}) <{}>".format(
+            type(self).__name__,
+            self.id,
+            self.__dict__
+        )
 
     def to_dict(self):
         """returns a dictionary containing all keys/values of __dict__ of
