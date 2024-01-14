@@ -23,10 +23,10 @@ class TestBaseModelPep8(unittest.TestCase):
     """ check for pep8 validation """
     def test_pep8(self):
         """ test base and test_base for pep8 conformance """
-        pep_style = pep8.StyleGuide(quiet=True)
+        style = pep8.StyleGuide(quiet=True)
         file1 = 'models/base_model.py'
         file2 = 'tests/test_models/test_base_model.py'
-        result = pep_style.check_files([file1, file2])
+        result = style.check_files([file1, file2])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
