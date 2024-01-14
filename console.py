@@ -14,6 +14,7 @@ from models.review import Review
 
 
 def parse(arg):
+    """the parse"""
     braces = re.search(r"\{(.*?)\}", arg)
     bracke = re.search(r"\[(.*?)\]", arg)
     if braces is None:
@@ -44,22 +45,9 @@ class HBNBCommand(cmd.Cmd):
         "Review"
     }
 
-    def do_quit(self, arg):
-        """Exit the command interpreter"""
-        return True
-
-    def do_EOF(self, arg):
-        """Exit the command interpreter using EOF (Ctrl-D)"""
-        print("")
-        return True
-
     def emptyline(self):
         """Do nothing on an empty line"""
         pass
-
-    def help_quit(self):
-        """Print help message for quit command"""
-        print("Quit command to exit the program")
 
     def default(self, arg):
         """Default behavior for cmd module when input is invalid"""
@@ -81,6 +69,15 @@ class HBNBCommand(cmd.Cmd):
                     return argdict[command[0]](call)
         print("*** Unknown syntax: {}".format(arg))
         return False
+
+    def do_quit(self, arg):
+        """Quit command to exit the program."""
+        return True
+
+    def do_EOF(self, arg):
+        """EOF signal to exit the program."""
+        print("")
+        return True
 
     def do_create(self, arg):
         """Usage: create <class>
