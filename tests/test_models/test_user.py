@@ -85,6 +85,11 @@ class TestUser(unittest.TestCase):
         self.assertEqual(type(new_dict), dict)
         self.assertTrue('to_dict' in dir(self.user))
 
+    def test_str(self):
+        """ test ___str___ method """
+        correct = "[User] ({}) {}".format(self.user.id, self.user.__dict__)
+        self.assertEqual(correct, str(self.user))
+
     @classmethod
     def tearDownClass(cls):
         """ remove test instances """
