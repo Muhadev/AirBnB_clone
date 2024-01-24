@@ -7,11 +7,17 @@
     text-align: right;
   }
 
-.locations,
-.amenities {
+.locations {
     height: 100%;
     width: 25%;
     border-right: 1px solid #DDDDDD;
+    float: left;
+    text-align: left;
+    margin-left: 30px;
+}
+.amenities {
+    height: 100%;
+    width: 25%;
     float: left;
     text-align: left;
     margin-left: 30px;
